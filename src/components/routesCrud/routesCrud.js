@@ -16,7 +16,7 @@ const RoutesCrud = () => {
 
   return (
     <Crud
-      label={"Rutas"}
+      label={"routes"}
       data={data}
       buttonPosition={"center"}
       dialogBtnLabel={"Agregar"}

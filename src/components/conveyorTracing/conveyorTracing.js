@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/core/styles';
 import { getConveyors } from '../../services/services.js';
 import MapContainer from '../GoogleMap/googleMap';
+import { useTranslation } from 'react-i18next'
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -23,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ConveyorTracing = () => {
+  const { t, i18n } = useTranslation();
   const classes = useStyles();
   const [conveyors, setConveyors] = React.useState([]);
   const [conveyor, setConveyor] = React.useState({});
@@ -40,12 +42,12 @@ const ConveyorTracing = () => {
     <Grid container>
       <Grid item xs={12}>
         <Typography variant={'h1'}>
-          Seguimiento Transportadores
+          {t('conveyorsTracking')}
         </Typography>
       </Grid>
       <Grid item xs={12} className={classes.selector}>
         <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel id="demo-simple-select-outlined-label">Seleccione una Transportador</InputLabel>
+          <InputLabel id="demo-simple-select-outlined-label">{t('selectConveyors')}</InputLabel>
           <Select
             labelId="demo-simple-select-outlined-label"
             id="demo-simple-select-outlined"

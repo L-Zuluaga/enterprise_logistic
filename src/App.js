@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Component, Suspense } from 'react';
 import MainTheme from './components/themes/mainTheme';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import store from './services/userSession';
+import './i18n'
 import './App.css';
 
 function App() {
@@ -10,7 +11,9 @@ function App() {
     <div className="App">
       <Provider store={store}>
         <BrowserRouter>
-          <MainTheme />
+          <Suspense fallback={null}>
+            <MainTheme />
+          </Suspense>
         </BrowserRouter>
       </Provider>
     </div>

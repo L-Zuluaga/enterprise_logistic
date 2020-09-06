@@ -1,5 +1,4 @@
 import React from "react";
-
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -15,6 +14,7 @@ import styles from '../styles.js';
 import CrudActionButton from '../children/crudActionButton'
 import ActionDialog from '../../dialog/dialogAction'
 import { deleteProduct } from '../../../services/services';
+import { useTranslation } from 'react-i18next'
 
 const CrudTable = ({
   title,
@@ -27,6 +27,7 @@ const CrudTable = ({
   disableDelete,
   ...props}) => {
   const keys = Object.keys(data[0]);
+  const { t, i18n } = useTranslation();
 
   return (
     <TableContainer component={Paper}>
@@ -34,12 +35,12 @@ const CrudTable = ({
         <TableHead>
           <TableRow>
             {keys.map((column) => (
-              <TableCell style={styles.tableCell}> {column} </TableCell>
+              <TableCell style={styles.tableCell}> {t(`${column}`)} </TableCell>
             ))}
             {
               !disableDelete && !disableEdit
               ?
-              <TableCell style={styles.actionTitle}> Action </TableCell>
+              <TableCell style={styles.actionTitle}> {t('action')} </TableCell>
               :
               <>
               </>

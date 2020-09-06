@@ -13,7 +13,7 @@ const InventoryCrud = () => {
 
   return (
     <Crud
-      label={"Inventario"}
+      label={"inventory"}
       data={data}
       buttonPosition={"center"}
       dialogBtnLabel={"Agregar"}

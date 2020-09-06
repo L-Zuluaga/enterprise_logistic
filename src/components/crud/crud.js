@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import CrudTable from './children/crudTable.js';
 import Dialog from '../dialog'
+import { useTranslation } from 'react-i18next'
 
 const Crud = ({
   label,
@@ -20,6 +21,7 @@ const Crud = ({
   disableDelete,
   disableCreate
 }) => {
+  const { t, i18n } = useTranslation();
   const [width, setWidth] = React.useState(window.innerWidth);
 
   const updateWidth = () => {
@@ -35,8 +37,8 @@ const Crud = ({
       <Container>
         <Grid container spacing={3}>
           <Grid item xs={12} mx={6}>
-            <Typography variant={width > 992 ? 'h1' : 'h2'} component="h2" gutterBottom>
-              {label}
+            <Typography variant={width > 992 ? 'h1' : 'h2'}  gutterBottom>
+              {t(`${label}`)}
             </Typography>
           </Grid>
           <Grid item xs={12}>

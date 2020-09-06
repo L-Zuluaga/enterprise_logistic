@@ -14,7 +14,7 @@ const ZonesCrud = () => {
 
   return (
     <Crud
-      label={"Zonas"}
+      label={"zones"}
       data={data}
       buttonPosition={"right"}
       dialogBtnLabel={"Agregar"}
