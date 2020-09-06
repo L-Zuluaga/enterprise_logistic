@@ -29,6 +29,11 @@ const CrudTable = ({
   const keys = Object.keys(data[0]);
   const { t, i18n } = useTranslation();
 
+  const formatDate = (date) => {
+    let newDate = new Date(date).toLocaleDateString();
+    return newDate;
+  }
+
   return (
     <TableContainer component={Paper}>
       <Table stickyHeader aria-label="sticky table">
@@ -53,7 +58,12 @@ const CrudTable = ({
               <TableRow align="center" >
                 {
                   Object.entries(item).map((key, rowIndex) => {
-                    return (<TableCell>{ key[1] }</TableCell>)
+                    console.log("FIELD NAME?", key[0])
+                    if(key[0] == 'createdAt' || key[0] == 'updatedAt') {
+                      return (<TableCell>{ formatDate( key[1]) }</TableCell>)
+                    }else{
+                      return (<TableCell>{ key[1] }</TableCell>)
+                    }
                   })
                 }
                 <TableCell>
