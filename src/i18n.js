@@ -42,7 +42,8 @@ const resources = {
       "requestDate": "Request Date",
       "saveRouteAssign": "Save Route",
       "conveyorsTracking": "Conveyors Tracking",
-      "viewInventory": "Ver mi Inventario"
+      "viewInventory": "View my Inventory",
+      "lang": "Language"
     }
   },
   es: {
@@ -85,7 +86,8 @@ const resources = {
       "requestDate": "Fecha de Solicitud",
       "saveRouteAssign": "Guardar Ruta",
       "conveyorsTracking": "Seguimiento de Transportadores",
-      "viewInventory": "View my Inventory"
+      "viewInventory": "Ver mi inventario",
+      "lang": "Lenguaje"
     }
   }
 };

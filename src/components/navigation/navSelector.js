@@ -67,7 +67,13 @@ const NavSelector = ({ roleUser, resetUserState, ...props }) => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Button startIcon={<ArrowDropDownIcon />} className={classes.navButton} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+            <Button
+              startIcon={<ArrowDropDownIcon />}
+              className={classes.navButton}
+              aria-controls="simple-menu"
+              aria-haspopup="true"
+              onClick={handleClick}
+            >
               {t('tabManage')}
             </Button>
             <Menu

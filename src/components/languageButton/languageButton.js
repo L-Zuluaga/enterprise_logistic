@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     minWidth: 120,
     float: 'right',
-    marginBottom: '10px'
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -23,8 +22,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const LanguageButton = () => {
+  const { t, i18n } = useTranslation();
   const classes = useStyles();
-  const { t, i18n } = useTranslation()
   const [language, setLanguage] = useState('');
 
   const handleChange = (event) => {
@@ -34,7 +33,7 @@ const LanguageButton = () => {
 
   return (
     <FormControl variant="outlined" className={classes.formControl}>
-      <InputLabel id="demo-simple-select-outlined-label">Lenguaje</InputLabel>
+      <InputLabel id="demo-simple-select-outlined-label">{t('lang')}</InputLabel>
       <Select
         labelId="demo-simple-select-outlined-label"
         id="demo-simple-select-outlined"
