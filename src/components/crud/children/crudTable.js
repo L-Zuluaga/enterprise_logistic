@@ -1,5 +1,4 @@
 import React from "react";
-
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -15,9 +14,25 @@ import styles from '../styles.js';
 import CrudActionButton from '../children/crudActionButton'
 import ActionDialog from '../../dialog/dialogAction'
 import { deleteProduct } from '../../../services/services';
+import { useTranslation } from 'react-i18next'
 
-const CrudTable = ({title, data, editActionTitle, editActionDescription, updateAction, deleteAction, ...props}) => {
+const CrudTable = ({
+  title,
+  data,
+  editActionTitle,
+  editActionDescription,
+  updateAction,
+  deleteAction,
+  disableEdit,
+  disableDelete,
+  ...props}) => {
   const keys = Object.keys(data[0]);
+  const { t, i18n } = useTranslation();
+
+  const formatDate = (date) => {
+    let newDate = new Date(date).toLocaleDateString();
+    return newDate;
+  }
 
   return (
     <TableContainer component={Paper}>
@@ -25,9 +40,16 @@ const CrudTable = ({title, data, editActionTitle, editActionDescription, updateA
         <TableHead>
           <TableRow>
             {keys.map((column) => (
-              <TableCell style={styles.tableCell}> {column} </TableCell>
+              <TableCell style={styles.tableCell}> {t(`${column}`)} </TableCell>
             ))}
-            <TableCell style={styles.actionTitle}> Action </TableCell>
+            {
+              !disableDelete && !disableEdit
+              ?
+              <TableCell style={styles.actionTitle}> {t('action')} </TableCell>
+              :
+              <>
+              </>
+            }
           </TableRow>
         </TableHead>
         <TableBody>
@@ -36,23 +58,44 @@ const CrudTable = ({title, data, editActionTitle, editActionDescription, updateA
               <TableRow align="center" >
                 {
                   Object.entries(item).map((key, rowIndex) => {
-                    return (<TableCell>{ key[1] }</TableCell>)
+                    console.log("FIELD NAME?", key[0])
+                    console.log("VALUE?", key[1])
+
+                    if(key[0] == 'createdAt' || key[0] == 'updatedAt') {
+                      return (<TableCell>{ formatDate( key[1]) }</TableCell>)
+                    }else{
+                      return (<TableCell>{ key[1] }</TableCell>)
+                    }
                   })
                 }
                 <TableCell>
-                  <ActionDialog
-                    title={editActionTitle}
-                    description={editActionDescription}
-                    fields={item}
-                    operation='edit'
-                    updateAction={updateAction}
-                  />
-                  <CrudActionButton
-                    size='small'
-                    operation='delete'
-                    item={item}
-                    deleteAction={deleteAction}
-                  />
+                  {
+                    !disableEdit
+                    ?
+                    <ActionDialog
+                      title={editActionTitle}
+                      description={editActionDescription}
+                      fields={item}
+                      operation='edit'
+                      updateAction={updateAction}
+                    />
+                  :
+                  <>
+                  < />
+                  }
+                  {
+                    !disableDelete
+                    ?
+                    <CrudActionButton
+                      size='small'
+                      operation='delete'
+                      item={item}
+                      deleteAction={deleteAction}
+                    />
+                  :
+                  <>
+                  </>
+                  }
                 </TableCell>
               </TableRow>
             )

@@ -16,10 +16,10 @@ const RoutesCrud = () => {
 
   return (
     <Crud
-      label={"Rutas"}
+      label={"routes"}
       data={data}
       buttonPosition={"center"}
-      dialogBtnLabel={"Agregar"}
+      dialogBtnLabel={"add"}
       dialogDescription={"Ingreselos datos de la ruta."}
       createAction={createRoute}
       updateAction={updateRoute}

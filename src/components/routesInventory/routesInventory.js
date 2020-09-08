@@ -13,14 +13,16 @@ const InventoryCrud = () => {
 
   return (
     <Crud
-      label={"Inventario"}
+      label={"inventory"}
       data={data}
       buttonPosition={"center"}
-      dialogBtnLabel={"Agregar"}
+      dialogBtnLabel={"add"}
       dialogDescription={"Ingreselos datos de la ruta."}
       createAction={addRegistry}
       updateAction={updateRegistry}
       deleteAction={deleteRegistry}
+      disableEdit={true}
+      disableDelete={true}
     />
   );
 }

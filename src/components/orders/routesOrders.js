@@ -7,9 +7,11 @@ import Container from '@material-ui/core/Container';
 
 import CrudTable from '../crud/children/crudTable.js';
 import { getOrders, updateOrder, deleteOrder } from '../../services/services'
+import { useTranslation } from 'react-i18next'
 
 const RoutesOrders = () => {
   const [data, setData] = useState([{"status": "NO DATA"}])
+  const { t, i18n } = useTranslation();
 
   useEffect( async () => {
     let responseData = await getOrders();
@@ -20,7 +22,7 @@ const RoutesOrders = () => {
   return (
     <Container>
       <Typography variant='h1'>
-        Pedidos
+        {t('orders')}
       </Typography>
       <br />
       <CrudTable

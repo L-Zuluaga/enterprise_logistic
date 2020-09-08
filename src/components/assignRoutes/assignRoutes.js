@@ -17,6 +17,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import { makeStyles } from '@material-ui/core/styles';
+import { useTranslation } from 'react-i18next'
 
 import { getRoutes, getConveyorsByZone, getOrdersByRoute, assignRoutes, updateConveyor, assignConveyor } from '../../services/services.js';
 
@@ -31,7 +32,7 @@ const AssignRoutes = () => {
     },
     formControl: {
       margin: theme.spacing(1),
-      minWidth: 320,
+      minWidth: width > 550 ? 320 : '100%',
     },
     selectEmpty: {
       marginTop: theme.spacing(2),
@@ -43,7 +44,7 @@ const AssignRoutes = () => {
       marginTop: '25px'
     }
   }));
-
+  const { t, i18n } = useTranslation();
   const [conveyors, setConveyors] = React.useState([]);
   const [conveyor, setConveyor] = React.useState({});
 
@@ -54,6 +55,11 @@ const AssignRoutes = () => {
   const [route, setRoute] = React.useState({});
 
   const [checkbox, setCheckbox] = React.useState('false');
+  const [width, setWidth] = useState(window.innerWidth);
+
+  const updateWidth = () => {
+    setWidth(window.innerWidth);
+  };
 
   const handleCheckbox = (event) => {
     event.preventDefault();
@@ -113,16 +119,21 @@ const AssignRoutes = () => {
     setRoutes(responseRoutes);
   }, [])
 
+  useEffect(() => {
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  });
+
   return (
     <Container>
-        <Typography variant='h1'>
-          Asignar Rutas
+        <Typography variant={width > 455 ? 'h1' : 'h2'}>
+          {t('assignRoutes')}
         </Typography>
         <br></br>
         <Grid container spacing={4} justify="center">
           <Grid item xs={12} md={6} style={{ paddingRight: window.innerHeight < 992 ? '15px' : '0px'}}>
             <FormControl variant="outlined" className={classes.formControl}>
-              <InputLabel id="demo-simple-select-outlined-label">Seleccione una Ruta</InputLabel>
+              <InputLabel id="demo-simple-select-outlined-label">{t('selectRoutes')}</InputLabel>
               <Select
                 labelId="demo-simple-select-outlined-label"
                 id="demo-simple-select-outlined"
@@ -140,7 +151,7 @@ const AssignRoutes = () => {
           </Grid>
           <Grid item xs={12} md={6}>
             <FormControl variant="outlined" className={classes.formControl}>
-              <InputLabel id="demo-simple-select-outlined-label">Seleccione un Transportador</InputLabel>
+              <InputLabel id="demo-simple-select-outlined-label">{t('selectConveyors')}</InputLabel>
               <Select
                 labelId="demo-simple-select-outlined-label"
                 id="demo-simple-select-outlined"
@@ -164,10 +175,10 @@ const AssignRoutes = () => {
                 <TableHead>
                   <TableRow>
                     <TableCell></TableCell>
-                    <TableCell align="right"><strong>Distribuidor</strong></TableCell>
-                    <TableCell align="right"><strong>Ruta</strong></TableCell>
-                    <TableCell align="right"><strong>Estado</strong></TableCell>
-                    <TableCell align="right"><strong>Fecha de Solicitud</strong></TableCell>
+                    <TableCell align="right"><strong>{t('distributor')}</strong></TableCell>
+                    <TableCell align="right"><strong>{t('route')}</strong></TableCell>
+                    <TableCell align="right"><strong>{t('state')}</strong></TableCell>
+                    <TableCell align="right"><strong>{t('requestDate')}</strong></TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -194,7 +205,7 @@ const AssignRoutes = () => {
           </Paper>
         </form>
         <Button type='submit' form='assignForm' variant='contained' color='primary' className={classes.saveButton}>
-          Guardar Ruta
+          {t('saveRouteAssign')}
         </Button>
     </Container>
   )
