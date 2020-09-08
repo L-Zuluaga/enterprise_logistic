@@ -32,7 +32,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
   navButton: {
-    color: 'white'
+    color: 'white',
+  },
+  laguageButton: {
+    float: 'right',
+    color: 'white',
   },
   selector: {
     paddingTop: '15px'
@@ -45,9 +49,18 @@ const NavSelector = ({ roleUser, resetUserState, ...props }) => {
     resetUserState();
   }
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorE2, setAnchorE2] = React.useState(null);
 
+  const handleClickLanguage = (event) => {
+    setAnchorE2(event.currentTarget);
+  };
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseLanguage = (lang) => {
+    i18n.changeLanguage(lang)
+    setAnchorE2(null);
   };
 
   const handleClose = () => {
@@ -95,7 +108,26 @@ const NavSelector = ({ roleUser, resetUserState, ...props }) => {
             <Button href="/asignar-rutas" style={styles.navButton}>{t('assignRoutes')}</Button>
             <Button href="/seguimiento-transportadores" style={styles.navButton}>{t('tracking')}</Button>
             <Button href="/login" style={styles.navButton} onClick={handleLogout}>Logout</Button>
-            <LanguageButton  />
+            <Button
+              startIcon={<ArrowDropDownIcon />}
+              className={classes.laguageButton}
+              aria-controls="simple-menu"
+              aria-haspopup="true"
+              onClick={handleClickLanguage}
+              >
+              {t('lang')}
+            </Button>
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorE2}
+              keepMounted
+              open={Boolean(anchorE2)}
+              onClose={handleCloseLanguage}
+              >
+
+              <MenuItem onClick={() => handleCloseLanguage('en')} value='en'>en</MenuItem>
+              <MenuItem onClick={() => handleCloseLanguage('es')} value='es'>es</MenuItem>
+            </Menu>
           </Grid>
         </Grid>
       </>

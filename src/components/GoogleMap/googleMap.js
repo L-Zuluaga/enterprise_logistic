@@ -5,7 +5,6 @@ const mapStyles = {
   width: '50%',
   height: '50%',
   marginTop: '20px',
-  marginLeft: '200px',
 };
 
 
@@ -37,10 +36,18 @@ const MapContainer = ({latitud, longitud, name, ...props}) => {
        lat: latitud,
        lng: longitud,
       }}
+      center={{
+       lat: latitud,
+       lng: longitud,
+      }}
     >
       <Marker
         onClick={onMarkerClick}
         name={name}
+        position={{
+          lat: latitud,
+          lng: longitud
+        }}
       />
       <InfoWindow
         marker={activeMarker}

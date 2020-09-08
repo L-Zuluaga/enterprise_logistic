@@ -1,4 +1,4 @@
-let url = 'http://localhost:4000/users/'
+let url = 'http://localhost:4000/users/';
 
 const getUsers = async () => {
   let response = await fetch(url);
@@ -6,13 +6,38 @@ const getUsers = async () => {
   return responseData;
 };
 
-
 const getUserByEmail = async (email, password) => {
   let response = await fetch(url);
   let responseData = await response.json();
 
   return responseData;
 };
+
+const login = async (email, password) => {
+  const user = {
+    email: email,
+    password: password
+  }
+
+  return fetch(url, {
+     // Adding method type
+     method: 'POST',
+     // Adding body or contents to send
+     body: JSON.stringify(user), // data can be `string` or {object}!
+     // Adding headers to the request
+     headers:{
+       'Content-Type': 'application/json'
+     }
+   }).then(res => res.json())
+   .catch(error => {
+     console.error("El usuario ingresado no se encunetra registrado en el sistema", error);
+   })
+   .then(response => {
+     console.log('Success: ', response[0])
+     return response[0];
+   });
+
+}
 
 const createUser = async (target) => {
   const product = {
@@ -76,5 +101,6 @@ const updateUser = (target) => {
 
 export {
   getUsers,
-  getUserByEmail
+  getUserByEmail,
+  login
 }

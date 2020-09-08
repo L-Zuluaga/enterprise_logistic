@@ -17,6 +17,7 @@
     "cors": "^2.8.5",
     "cross-env": "^7.0.2",
     "express": "^4.17.1",
+    "firebase": "^7.19.1",
     "google-maps-react": "^2.0.6",
     "helmet": "^3.23.3",
     "i18next": "^19.7.0",

@@ -59,6 +59,8 @@ const CrudTable = ({
                 {
                   Object.entries(item).map((key, rowIndex) => {
                     console.log("FIELD NAME?", key[0])
+                    console.log("VALUE?", key[1])
+
                     if(key[0] == 'createdAt' || key[0] == 'updatedAt') {
                       return (<TableCell>{ formatDate( key[1]) }</TableCell>)
                     }else{

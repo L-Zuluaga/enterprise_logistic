@@ -14,9 +14,10 @@ import PersonIcon from '@material-ui/icons/Person';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useTranslation } from 'react-i18next'
 
 import { setRoleUser, resetUserState, getRoleUser, setUserId } from '../../services/userSession'
-import { getUsers, getUserByEmail } from '../../services/services'
+import { getUsers, getUserByEmail, login } from '../../services/services'
 
 
 function Copyright() {
@@ -54,59 +55,29 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = ({ roleUser, setRoleUser, userId, setUserId }) => {
   const classes = useStyles();
-
-  const userAdmin = {
-    email: 'admin@gmail.com',
-    password: '123456789',
-    role: 'ADMIN'
-  }
-
-  const userProvider = {
-    email: 'provider@gmail.com',
-    password: '123456789',
-    role: 'PROVIDER'
-  }
-
-  const [users, setUsers] = useState([]);
+  const { t, i18n } = useTranslation();
 
   const [data, setData] = useState({
     email: '',
     password: ''
   });
 
-  let { email, password} = data;
-
   const onChange = (e) => {
     setData({ ...data,[e.target.name]: e.target.value });
   }
 
-    const onSubmitLogin =  async (event) => {
-      event.preventDefault();
-      email = event.target[0].value;
-      password = event.target[2].value;
-      /* Validar con la data de la BD */
-      let x = {};
-      const fetchedUsers = await getUsers();
+  const onSubmitLogin =  async (event) => {
+    event.preventDefault();
+    setData({...data, 'email': event.target[0].value});
+    setData({...data, 'password': event.target[2].value});
 
-      fetchedUsers.forEach((user, i) => {
-        if (user.email == email) {
-          x = user
-        }
-      });
-
-      console.log("X", x);
-
-      if(password == x.passwordHash){
-        setRoleUser(x.type);
-        if (x.type == "PROVIDER") {
-          setUserId(x.userId)
-          console.log("--->", userId)
-        }
-      }else{
-        /* validar si el formato es correcto */
-        alert("Usuario o Contraseña incorrectas");
-      }
+    const fetchedUser = await login(data.email, data.password);
+    if (fetchedUser){
+      setRoleUser(fetchedUser.type);
+    }else{
+      alert(t('loginError'))
     }
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -129,7 +100,7 @@ const Login = ({ roleUser, setRoleUser, userId, setUserId }) => {
             name="email"
             autoComplete="email"
             autoFocus
-            value={email}
+            value={data.email}
             onChange={onChange}
           />
           <TextField
@@ -142,7 +113,7 @@ const Login = ({ roleUser, setRoleUser, userId, setUserId }) => {
             type="password"
             id="password"
             autoComplete="current-password"
-            value={password}
+            value={data.password}
             onChange={onChange}
           />
           <FormControlLabel

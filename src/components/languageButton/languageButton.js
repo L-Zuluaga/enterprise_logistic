@@ -9,8 +9,9 @@ import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
-    margin: theme.spacing(1),
+    margin: 0,
     minWidth: 120,
+    paddingBottom: '10px',
     float: 'right',
   },
   selectEmpty: {
@@ -32,7 +33,7 @@ const LanguageButton = () => {
   }
 
   return (
-    <FormControl variant="outlined" className={classes.formControl}>
+    <FormControl className={classes.formControl}>
       <InputLabel id="demo-simple-select-outlined-label">{t('lang')}</InputLabel>
       <Select
         labelId="demo-simple-select-outlined-label"

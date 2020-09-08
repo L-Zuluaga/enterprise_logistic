@@ -28,6 +28,7 @@ const ordersByProductRouter = require('./routes/ordersByProductRoute')
 const zoneRouter = require('./routes/zoneRoute')
 const neighborhoodRouter = require('./routes/neighborhoodRoute')
 const inventoryRouter = require('./routes/inventoryRoute')
+const locationRouter = require('./routes/locationRoute')
 
 // Setup default port
 const PORT = process.env.PORT || 4000
@@ -67,6 +68,7 @@ app.use('/users', userRouter)
 app.use('/neighborhoods', neighborhoodRouter)
 app.use('/zones', zoneRouter)
 app.use('/inventory', inventoryRouter)
+app.use('/locations', locationRouter)
 
 // Implement route for errors
 app.use((err, req, res, next) => {

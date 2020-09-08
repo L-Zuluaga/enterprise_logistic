@@ -43,7 +43,8 @@ const resources = {
       "saveRouteAssign": "Save Route",
       "conveyorsTracking": "Conveyors Tracking",
       "viewInventory": "View my Inventory",
-      "lang": "Language"
+      "lang": "Language",
+      "loginError": "Invalid User or Password"
     }
   },
   es: {
@@ -87,7 +88,8 @@ const resources = {
       "saveRouteAssign": "Guardar Ruta",
       "conveyorsTracking": "Seguimiento de Transportadores",
       "viewInventory": "Ver mi inventario",
-      "lang": "Lenguaje"
+      "lang": "Lenguaje",
+      "loginError": "Usuario o Contraseña invalidos"
     }
   }
 };

@@ -251,22 +251,22 @@ const seedInitialData = async () => {
 
   /* Agregar Transportadores */
   const conveyor1 = new models.Conveyor({
+    _id: "5f5702eb2b12e9326ea8312c",
     name: 'Hernan Orjuela',
-    user: "5f38f4f36a382c99fe1c0210",
     neighborhood: neighborhood1._id,
     route: "5f38f4f36a382c99fe1c0290"
   });
 
   const conveyor2 = new models.Conveyor({
+    _id: "5f5702efc31d518fddb277c1",
     name: 'Juan Molina',
-    user: "5f38f4f36a382c99fe1c0210",
     neighborhood: neighborhood2._id,
     route: "5f38f4f36a382c99fe1c0290"
   });
 
   const conveyor3 = new models.Conveyor({
+    _id: "5f5702f3f571311274abfb7d",
     name: 'Jose Ramirez',
-    user: "5f38f4f36a382c99fe1c0210",
     neighborhood: "5f38f4f36a382c99fe1c0250",
     route: "5f38f4f36a382c99fe1c0290"
   });
@@ -275,17 +275,17 @@ const seedInitialData = async () => {
   const order1 = new models.Order ({
     distributor: '5f38f4f36a382c99fe1c0220',
     state: "Pendiente",
-    neighborhood: neighborhood1._id
+    neighborhood: neighborhood1._id,
   });
   const order2 = new models.Order ({
     distributor: '5f38f4f36a382c99fe1c0221',
     state: "Pendiente",
-    neighborhood:  neighborhood2._id
+    neighborhood:  neighborhood2._id,
   });
   const order3 = new models.Order ({
     distributor: '5f38f4f36a382c99fe1c0222',
     state: "Pendiente",
-    neighborhood: "5f38f4f36a382c99fe1c0302"
+    neighborhood: "5f38f4f36a382c99fe1c0302",
   });
 
   /* Relacion productos con pedidos */
@@ -337,18 +337,33 @@ const seedInitialData = async () => {
 
   /* Agregar Usuarios */
   const user1 = new models.User({
+    _id: "5f5700b64fcc9a13a91f08c2",
     email: 'admin@gmail.com',
     passwordHash: "12345678",
     type: "ADMIN"
   });
 
   const user2 = new models.User({
+    _id: "5f5701423bbb81d5507119a0",
     email: 'provider@gmail.com',
     passwordHash: "12345678",
     type: "PROVIDER",
     userId: provider1._id
   });
 
+  const user3 = new models.User({
+    _id: "5f5702023076e3ab99f2b9e9",
+    email: 'transportador1@gmail.com',
+    passwordHash: "12345678",
+    type: "CONVEYOR"
+  });
+
+  const user4 = new models.User({
+    _id: "5f570209f1a0d0a2c5944f28",
+    email: 'transportador12@gmail.com',
+    passwordHash: "12345678",
+    type: "CONVEYOR"
+  });
 
   await provider1.save();
   await provider2.save();
