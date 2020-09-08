@@ -44,7 +44,8 @@ const resources = {
       "conveyorsTracking": "Conveyors Tracking",
       "viewInventory": "View my Inventory",
       "lang": "Language",
-      "loginError": "Invalid User or Password"
+      "loginError": "Invalid User or Password",
+      "add": "Add"
     }
   },
   es: {
@@ -89,7 +90,8 @@ const resources = {
       "conveyorsTracking": "Seguimiento de Transportadores",
       "viewInventory": "Ver mi inventario",
       "lang": "Lenguaje",
-      "loginError": "Usuario o Contraseña invalidos"
+      "loginError": "Usuario o Contraseña invalidos",
+      "add": "Agregar"
     }
   }
 };

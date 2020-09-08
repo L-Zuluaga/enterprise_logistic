@@ -19,7 +19,7 @@ const RoutesTransporters = () => {
       label={"conveyors"}
       data={data}
       buttonPosition={"center"}
-      dialogBtnLabel={"Agregar"}
+      dialogBtnLabel={"add"}
       dialogDescription={"Descripcion de prueba"}
       createAction={createConveyor}
       updateAction={updateConveyor}

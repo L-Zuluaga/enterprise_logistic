@@ -68,7 +68,6 @@ const ConveyorTracing = () => {
   useEffect( () => {
     const interval = setInterval(() => {
       fetchLocation();
-      console.log("CONVEYOR", counter)
     }, 2000);
     return () => clearInterval(interval);
   });

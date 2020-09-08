@@ -18,7 +18,7 @@ const RoutesProducts = () => {
       label={"distributors"}
       data={data}
       buttonPosition={"center"}
-      dialogBtnLabel={"Agregar"}
+      dialogBtnLabel={"add"}
       dialogDescription={"Descripcion de prueba"}
       dialogActionTitle={"Editar Distribuidor"}
       dialogActionDescription={"Descripcion ..."}

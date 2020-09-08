@@ -9,12 +9,14 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next'
 
 import CrudButton from '../crud/children/crudButton.js'
 import styles from './styles.js'
 
 export default function FormDialog({ buttonLabel, title, description, fields, dialogButtonLabel, buttonPosition, action }) {
-    let location = useLocation();
+  let location = useLocation();
+  const { t, i18n } = useTranslation();
   const [open, setOpen] = React.useState(false);
   const [formData, setFormData] = React.useState({});
 
@@ -35,7 +37,7 @@ export default function FormDialog({ buttonLabel, title, description, fields, di
   return (
     <div>
       <CrudButton
-        label={buttonLabel}
+        label={t(`${buttonLabel}`)}
         variant="outlined"
         color="primary"
         position={buttonPosition}
@@ -84,7 +86,7 @@ export default function FormDialog({ buttonLabel, title, description, fields, di
             Cancel
           </Button>
           <Button form='createForm' type="submit" color="primary">
-            {dialogButtonLabel}
+            {`${dialogButtonLabel}`}
           </Button>
         </DialogActions>
       </Dialog>
