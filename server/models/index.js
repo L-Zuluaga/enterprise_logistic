@@ -252,21 +252,21 @@ const seedInitialData = async () => {
   /* Agregar Transportadores */
   const conveyor1 = new models.Conveyor({
     _id: "5f5702eb2b12e9326ea8312c",
-    name: 'Hernan Orjuela',
+    name: 'Sandra Hurtado',
     neighborhood: neighborhood1._id,
     route: "5f38f4f36a382c99fe1c0290"
   });
 
   const conveyor2 = new models.Conveyor({
     _id: "5f5702efc31d518fddb277c1",
-    name: 'Juan Molina',
+    name: 'Ivonne Moreno',
     neighborhood: neighborhood2._id,
     route: "5f38f4f36a382c99fe1c0290"
   });
 
   const conveyor3 = new models.Conveyor({
     _id: "5f5702f3f571311274abfb7d",
-    name: 'Jose Ramirez',
+    name: 'Felipe Gomez',
     neighborhood: "5f38f4f36a382c99fe1c0250",
     route: "5f38f4f36a382c99fe1c0290"
   });

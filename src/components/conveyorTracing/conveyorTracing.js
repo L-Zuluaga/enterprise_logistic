@@ -53,7 +53,7 @@ const ConveyorTracing = () => {
   );
 
   const fetchLocation = () => {
-    let x = firestore.collection('usuarios').doc('1234').onSnapshot( (doc) => {
+    let x = firestore.collection('usuarios').doc(conveyor._id).onSnapshot( (doc) => {
       console.log("Fetched data: ", doc.data());
       setConveyorLocation({...conveyorLocation, 'lo': doc.data().longitude, 'la': doc.data().latitude});
     });
@@ -67,13 +67,16 @@ const ConveyorTracing = () => {
   /* For Firebase */
   useEffect( () => {
     const interval = setInterval(() => {
-      fetchLocation();
+      if (conveyor.status != "unloaded") {
+        fetchLocation();
+      }
     }, 2000);
     return () => clearInterval(interval);
   });
 
   const handleConveyorChange = async (event) => {
     setConveyor(event.target.value)
+
   };
 
   return (
